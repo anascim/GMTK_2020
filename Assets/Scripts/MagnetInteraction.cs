@@ -25,7 +25,12 @@ public class MagnetInteraction : MonoBehaviour
 
         if (isOnArea && hasMagnet)
         {
+            GetComponent<PlayerController>().canWalk = false;
             rb.AddForce(Vector2.up, ForceMode2D.Impulse);
+        }
+        else
+        {
+            GetComponent<PlayerController>().canWalk = true;
         }
     }
 }

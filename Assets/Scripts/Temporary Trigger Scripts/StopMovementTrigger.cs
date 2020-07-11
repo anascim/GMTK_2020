@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StopJumpTrigger : MonoBehaviour
+public class StopMovementTrigger : MonoBehaviour
 {
     private GameObject player;
 
@@ -13,12 +13,13 @@ public class StopJumpTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision != null)
+        if (collision != null)
         {
             if (collision.gameObject == player)
             {
-                Debug.LogWarning("The player has lost the ability to Jump");
-                player.GetComponent<PlayerController>().canJump = false;
+                Debug.LogWarning("The player has lost the ability to Walk");
+                player.GetComponent<PlayerController>().canJump = true;
+                player.GetComponent<PlayerController>().canWalk = false;
             }
         }
     }
