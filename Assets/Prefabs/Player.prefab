@@ -175,6 +175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 5
   jumpForce: 5
+  canWalk: 1
+  canJump: 1
   groundCheck: {fileID: 14465325311259}
   checkRadius: 0.1
   whatIsGround:
@@ -204,7 +206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14465325311256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.96, z: 0}
+  m_LocalPosition: {x: 0, y: -0.988, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 14465067743935}
