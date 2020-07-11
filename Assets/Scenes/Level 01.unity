@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d10808f48301040fdb01c7a1538530fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasMagnet: 0
+  hasMagnet: 1
   isOnArea: 0
   checkRadius: 0.5
   whatIsMagnet:
