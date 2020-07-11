@@ -6,34 +6,42 @@ public class MovingPlatform : MonoBehaviour
 {
     public Transform upperBound;
     public Transform lowerBound;
+    public Transform platform;
     public float velocity;
     public bool goingUp;
 
+    private Transform target;
+    private Transform other {
+        get {
+            if (target == upperBound)
+                return lowerBound;
+            else
+                return upperBound;
+        }
+    }
+    private Vector2 direction;
+
+    void Start() {
+        if (goingUp)
+        {
+            target = upperBound;
+        }
+        else
+        {
+            target = lowerBound;
+        }
+    }
+
     void FixedUpdate()
     {
-        if (transform.position.y > upperBound.position.y)
-            goingUp = false;
-        else if (transform.position.y < lowerBound.position.y)
-            goingUp = true;
-
-        if (goingUp)
-        transform.position = new Vector2(transform.position.x, transform.position.y + velocity * Time.fixedDeltaTime);
-        else
-            transform.position = new Vector2(transform.position.x, transform.position.y - velocity * Time.deltaTime);
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag == "Player")
+        // check if passed through target
+        if (Vector2.Dot(target.position - platform.position, other.position - platform.position) > 0f)
         {
-            other.transform.SetParent(transform);
+            target = other;
+            goingUp = !goingUp;
         }
-    }
-
-    private void OnCollisionExit2D(Collision2D other) {
-        if (other.gameObject.tag == "Player")
-        {
-            other.transform.parent = null;
-        }
+        direction = (target.position - platform.position).normalized;
+        platform.position = new Vector2(platform.position.x + direction.x * velocity * Time.fixedDeltaTime, 
+                                         platform.position.y + direction.y * velocity * Time.fixedDeltaTime);
     }
 }
