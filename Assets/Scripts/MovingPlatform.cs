@@ -35,7 +35,7 @@ public class MovingPlatform : MonoBehaviour
     void FixedUpdate()
     {
         // check if passed through target
-        if (Vector2.Dot(target.position - platform.position, other.position - platform.position) > 0f)
+        if (Vector2.Dot(target.position - platform.position, other.position - platform.position) > -0.1f)
         {
             target = other;
             goingUp = !goingUp;
