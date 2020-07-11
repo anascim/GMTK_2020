@@ -44,18 +44,4 @@ public class MovingPlatform : MonoBehaviour
         platform.position = new Vector2(platform.position.x + direction.x * velocity * Time.fixedDeltaTime, 
                                          platform.position.y + direction.y * velocity * Time.fixedDeltaTime);
     }
-
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag == "Player")
-        {
-            other.transform.SetParent(platform);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D other) {
-        if (other.gameObject.tag == "Player")
-        {
-            other.transform.parent = null;
-        }
-    }
 }
