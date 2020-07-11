@@ -10,7 +10,8 @@ public class MagnetTimer : MonoBehaviour
 
     private float timer;
 
-    private bool magnetOn;
+    [HideInInspector]
+    public bool magnetOn;
 
     private void Start()
     {

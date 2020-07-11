@@ -9,6 +9,9 @@ public class MagnetInteraction : MonoBehaviour
     public bool isOnArea;
     public float checkRadius;
 
+    [HideInInspector]
+    public bool canReturnWalk;
+
     //References
     private Rigidbody2D rb;
     public LayerMask whatIsMagnet;
@@ -28,7 +31,8 @@ public class MagnetInteraction : MonoBehaviour
             GetComponent<PlayerController>().canWalk = false;
             rb.AddForce(Vector2.up, ForceMode2D.Impulse);
         }
-        else
+
+        if (!isOnArea && canReturnWalk)
         {
             GetComponent<PlayerController>().canWalk = true;
         }
