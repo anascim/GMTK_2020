@@ -14,7 +14,7 @@ public class Platform : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.tag == "Player")
         {
-            if (other.transform.parent == this)
+            if (other.transform.parent == this.transform)
                 other.transform.parent = null;
         }
     }

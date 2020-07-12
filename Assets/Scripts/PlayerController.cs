@@ -18,6 +18,11 @@ public class PlayerController : MonoBehaviour
     public Transform setLever;
     public float interactionRadius;
 
+    public Collider2D headCollider;
+    public Collider2D MagnetCollider;
+    public Collider2D bodyCollider;
+    public Collider2D wheelCollider;
+
     private Rigidbody2D rb;
     private bool isGrounded = true;
 
@@ -73,6 +78,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Magnet" && hasMagnet)
         {
             animator.SetBool("IsBeingPulled", true);
+            animator.SetBool("IsGrounded", false);
         }
     }
 
