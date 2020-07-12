@@ -18,7 +18,7 @@ public class StopMovementTrigger : MonoBehaviour
             if (collision.gameObject == player)
             {
                 Debug.LogWarning("The player has lost the ability to Walk");
-				player.GetComponent<MagnetInteraction>().canReturnWalk = false;
+				player.GetComponent<PlayerController>().canReturnWalk = false;
 				player.GetComponent<PlayerController>().canJump = true;
                 player.GetComponent<PlayerController>().canWalk = false;
             }

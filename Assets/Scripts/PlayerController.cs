@@ -12,19 +12,24 @@ public class PlayerController : MonoBehaviour
     public bool hasMagnet;
     public Animator animator;
 
+    [HideInInspector]
+    public bool canReturnWalk;
+
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
     public Transform setLever;
     public float interactionRadius;
+    public LayerMask whatIsMagnet;
 
-    public Collider2D headCollider;
-    public Collider2D MagnetCollider;
-    public Collider2D bodyCollider;
-    public Collider2D wheelCollider;
+    // public Collider2D headCollider;
+    // public Collider2D MagnetCollider;
+    // public Collider2D bodyCollider;
+    // public Collider2D wheelCollider;
 
     private Rigidbody2D rb;
     private bool isGrounded = true;
+    private bool isBeingPulled = false;
 
     void Start()
     {
@@ -33,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        // --- Walking ---
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
         if(isGrounded)
@@ -46,6 +52,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(hMove * velocity, rb.velocity.y);
         }
 
+        // --- Jumping ---
         if (Input.GetKey(KeyCode.Space) && isGrounded && canJump)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -54,6 +61,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsGrounded", false);
         }
 
+        // --- Interaction ---
         if (Input.GetKeyDown(KeyCode.E))
         {
             Collider2D col = Physics2D.OverlapCircle(setLever.position, interactionRadius);
@@ -65,12 +73,24 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // --- Magnet ---
+        isBeingPulled = Physics2D.OverlapCircle(transform.position, checkRadius, whatIsMagnet);
+
+        if (isBeingPulled && hasMagnet)
+        {
+            canWalk = false;
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+            rb.AddForce(Vector2.up, ForceMode2D.Impulse);
+        } else {
+            canWalk = true;
+        }
+
         animator.SetFloat("Speed", rb.velocity.x);
     }
 
-    IEnumerator ActivateInteractable(Interactable interactable)
+    private IEnumerator ActivateInteractable(Interactable interactable)
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.3f);
         interactable.Interact();
     }
 
@@ -78,7 +98,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Magnet" && hasMagnet)
         {
             animator.SetBool("IsBeingPulled", true);
-            animator.SetBool("IsGrounded", false);
         }
     }
 
@@ -103,10 +122,10 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    private void OnTriggerStay2D(Collider2D other) {
-        if (other.tag == "Magnet" && hasMagnet)
-        {
-            rb.AddForce(Vector2.up, ForceMode2D.Impulse);
-        }
-    }
+    // private void OnTriggerStay2D(Collider2D other) {
+    //     if (other.tag == "Magnet" && hasMagnet)
+    //     {
+    //         rb.AddForce(Vector2.up, ForceMode2D.Impulse);
+    //     }
+    // }
 }

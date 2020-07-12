@@ -5,6 +5,7 @@ using UnityEngine;
 public class MagnetTimer : MonoBehaviour
 {
     public float changeInterval;
+    public PlayerController player;
 
     private SpriteRenderer sr;
 
@@ -30,12 +31,14 @@ public class MagnetTimer : MonoBehaviour
 
         if (magnetOn)
         {
-            gameObject.layer = 10;
+            foreach (BoxCollider2D collider in GetComponents<BoxCollider2D>())
+                collider.enabled = true;
             sr.color = new Color32(0, 255, 255, 100);
         }
         if (!magnetOn)
         {
-            gameObject.layer = 0;
+            foreach (BoxCollider2D collider in GetComponents<BoxCollider2D>())
+                collider.enabled = false;
             sr.color = new Color32(0, 255, 255, 0);
         }
 
