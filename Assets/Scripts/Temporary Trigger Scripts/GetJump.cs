@@ -32,6 +32,7 @@ public class GetJump : MonoBehaviour
                 timer = 0;
                 alertText.text = "The robot has gain the Jump and Walk controls!";
                 alertText.gameObject.SetActive(true);
+                player.GetComponent<PlayerController>().canReturnWalk = true;
                 player.GetComponent<PlayerController>().canJump = true;
                 player.GetComponent<PlayerController>().canWalk = true;
             }

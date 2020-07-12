@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
             canWalk = false;
             rb.velocity = new Vector2(0f, rb.velocity.y);
             rb.AddForce(Vector2.up, ForceMode2D.Impulse);
-        } else {
+        } else if (canReturnWalk){
             canWalk = true;
         }
 

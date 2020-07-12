@@ -34,6 +34,11 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
+    public void GoPlatform()
+    {
+        movementIsActive = true;
+    }
+
     void FixedUpdate()
     {
         if (movementIsActive)
