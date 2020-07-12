@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
+    public bool movementIsActive;
+
     public Transform upperBound;
     public Transform lowerBound;
     public Transform platform;
@@ -34,14 +36,17 @@ public class MovingPlatform : MonoBehaviour
 
     void FixedUpdate()
     {
-        // check if passed through target
-        if (Vector2.Dot(target.position - platform.position, other.position - platform.position) > 0f)
+        if (movementIsActive)
         {
-            target = other;
-            goingUp = !goingUp;
+            // check if passed through target
+            if (Vector2.Dot(target.position - platform.position, other.position - platform.position) > -0.1f)
+            {
+                target = other;
+                goingUp = !goingUp;
+            }
+            direction = (target.position - platform.position).normalized;
+            platform.position = new Vector2(platform.position.x + direction.x * velocity * Time.fixedDeltaTime,
+                                             platform.position.y + direction.y * velocity * Time.fixedDeltaTime);
         }
-        direction = (target.position - platform.position).normalized;
-        platform.position = new Vector2(platform.position.x + direction.x * velocity * Time.fixedDeltaTime, 
-                                         platform.position.y + direction.y * velocity * Time.fixedDeltaTime);
     }
 }
