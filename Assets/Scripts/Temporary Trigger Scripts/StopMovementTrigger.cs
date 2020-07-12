@@ -7,8 +7,6 @@ public class StopMovementTrigger : MonoBehaviour
 {
     private GameObject player;
 
-    private float timer;
-
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -21,7 +19,6 @@ public class StopMovementTrigger : MonoBehaviour
         {
             if (collision.gameObject == player)
             {
-                timer = 0;
 				player.GetComponent<PlayerController>().canReturnWalk = false;
 				player.GetComponent<PlayerController>().canJump = true;
                 player.GetComponent<PlayerController>().canWalk = false;

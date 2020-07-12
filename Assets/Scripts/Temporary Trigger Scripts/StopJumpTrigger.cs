@@ -6,24 +6,13 @@ using UnityEngine.UI;
 public class StopJumpTrigger : MonoBehaviour
 {
     private GameObject player;
-    public Text alertText;
-    private float timer;
+
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    private void Update()
-    {
-        timer += Time.deltaTime;
-
-        if(timer > 5 && timer < 6)
-        {
-            alertText.gameObject.SetActive(false);
-
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,9 +20,8 @@ public class StopJumpTrigger : MonoBehaviour
         {
             if (collision.gameObject == player)
             {
-                timer = 0;
-                alertText.text = "The robot has lost the Jump control!";
-                alertText.gameObject.SetActive(true);
+                DialogBox.shared.AppearWithText("The robot has lost the Jump control!");
+
                 player.GetComponent<PlayerController>().canJump = false;
             }
         }
