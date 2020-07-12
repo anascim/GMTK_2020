@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StopMovementTrigger : MonoBehaviour
+public class GetJump : MonoBehaviour
 {
     private GameObject player;
-
     public Text alertText;
 
     private float timer;
@@ -18,8 +17,6 @@ public class StopMovementTrigger : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
-
         if(timer > 5)
         {
             alertText.gameObject.SetActive(false);
@@ -33,11 +30,10 @@ public class StopMovementTrigger : MonoBehaviour
             if (collision.gameObject == player)
             {
                 timer = 0;
-                alertText.text = "The robot has lost the Walk control!";
+                alertText.text = "The robot has gain the Jump and Walk controls!";
                 alertText.gameObject.SetActive(true);
-				player.GetComponent<MagnetInteraction>().canReturnWalk = false;
-				player.GetComponent<PlayerController>().canJump = true;
-                player.GetComponent<PlayerController>().canWalk = false;
+                player.GetComponent<PlayerController>().canJump = true;
+                player.GetComponent<PlayerController>().canWalk = true;
             }
         }
     }
