@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.3587269, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18200,13 +18200,6 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 32, y: -28, z: 0}
     second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
       m_TileIndex: 1
       m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
@@ -112463,6 +112456,7 @@ Tilemap:
       e13: 0
       e20: 0
       e21: 0
+      e22: 2.2e-44
       e23: 0
       e30: 0
       e31: 0
@@ -112956,14 +112950,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d10808f48301040fdb01c7a1538530fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasMagnet: 1
-  isOnArea: 0
-  checkRadius: 0.1
-  canReturnWalk: 0
-  whatIsMagnet:
-    serializedVersion: 2
-    m_Bits: 1024
-  magnet: {fileID: 1152974558}
 --- !u!1001 &576097718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113878,6 +113864,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 277434762, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 14465067743930, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
       propertyPath: velocity
       value: 9
@@ -113928,11 +113918,11 @@ PrefabInstance:
       objectReference: {fileID: 6200000, guid: 284d7d66040ad4254b23be6e97c13058, type: 2}
     - target: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.83
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 43.34
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
       propertyPath: m_LocalPosition.z
@@ -113972,11 +113962,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
