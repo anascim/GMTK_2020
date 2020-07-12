@@ -20,7 +20,7 @@ public class StopMovementTrigger : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer > 5)
+        if(timer > 5 && timer < 6)
         {
             alertText.gameObject.SetActive(false);
         }

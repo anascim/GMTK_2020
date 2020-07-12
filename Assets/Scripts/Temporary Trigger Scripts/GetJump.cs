@@ -17,7 +17,7 @@ public class GetJump : MonoBehaviour
 
     private void Update()
     {
-        if(timer > 5)
+        if(timer > 5 && timer < 6)
         {
             alertText.gameObject.SetActive(false);
         }
