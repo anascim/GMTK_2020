@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.3587269, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 41183863}
   - component: {fileID: 41183866}
   - component: {fileID: 41183865}
+  - component: {fileID: 41183867}
   m_Layer: 10
   m_Name: Magnet Area
   m_TagString: Magnet
@@ -368,6 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeInterval: 4
+  player: {fileID: 0}
   magnetOn: 0
 --- !u!212 &41183866
 SpriteRenderer:
@@ -417,6 +419,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &41183867
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41183862}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 5.9168715}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 2, y: 12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.0117557, y: 0.7820654}
+  m_EdgeRadius: 0
 --- !u!1 &151681241
 GameObject:
   m_ObjectHideFlags: 0
@@ -18395,38 +18423,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &442826372 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 14465067743931, guid: 2b2dc44e7a67b4528b3be215acb66b13,
-    type: 3}
-  m_PrefabInstance: {fileID: 892706038}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &442826376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13,
     type: 3}
   m_PrefabInstance: {fileID: 892706038}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &442826377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 442826372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d10808f48301040fdb01c7a1538530fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasMagnet: 1
-  isOnArea: 0
-  checkRadius: 0.1
-  canReturnWalk: 0
-  whatIsMagnet:
-    serializedVersion: 2
-    m_Bits: 1024
-  magnet: {fileID: 1152974558}
 --- !u!1001 &576097718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19194,61 +19196,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 14465067743930, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: velocity
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 14465067743930, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: jumpForce
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 14465067743930, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: checkRadius
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 14465067743930, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: canWalk
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 14465067743931, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 14465067743932, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: m_GravityScale
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 14465067743932, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 284d7d66040ad4254b23be6e97c13058, type: 2}
-    - target: {fileID: 14465067743933, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 14465067743933, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 14465067743933, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 14465067743933, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 14465067743933, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 284d7d66040ad4254b23be6e97c13058, type: 2}
     - target: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.57
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19285,14 +19243,6 @@ PrefabInstance:
     - target: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 14465067743935, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b2dc44e7a67b4528b3be215acb66b13, type: 3}
@@ -19911,36 +19861,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1152974557
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1152974558}
-  m_Layer: 0
-  m_Name: Magnet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1152974558
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152974557}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 442826376}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1299604142
 PrefabInstance:
@@ -20687,7 +20607,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 1683166814}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 284d7d66040ad4254b23be6e97c13058, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
