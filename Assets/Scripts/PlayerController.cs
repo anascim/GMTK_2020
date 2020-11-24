@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
@@ -22,22 +23,65 @@ public class PlayerController : MonoBehaviour
     public float interactionRadius;
     public LayerMask whatIsMagnet;
 
-    // public Collider2D headCollider;
-    // public Collider2D MagnetCollider;
-    // public Collider2D bodyCollider;
-    // public Collider2D wheelCollider;
+    [SerializeField]
+    GameObject pauseMenu;
 
     private Rigidbody2D rb;
     private bool isGrounded = true;
     private bool isBeingPulled = false;
 
+    private int playerID;
+    
+    PlayerControls controls;
+
+    private bool jumped = false;
+    private bool interacted = false;
+
+    private void Awake() {
+        controls = new PlayerControls();
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        controls.Gameplay.Jump.performed += ctx => jumped = true;
+        controls.Gameplay.Interact.performed += ctx => interacted = true;
+        controls.Gameplay.Pause.performed += ctx => Pause();
+    }
+
+    private void OnEnable() 
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
+    void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Pause()
+    {
+        if (Time.timeScale == 0f)
+        {
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
     void FixedUpdate()
-    {
+    {   
+        float hMove = 0f;
         // --- Walking ---
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
@@ -48,12 +92,14 @@ public class PlayerController : MonoBehaviour
 
         if (canWalk)
         {
-            float hMove = Input.GetAxisRaw("Horizontal");
+            float analog = controls.Gameplay.Move.ReadValue<Vector2>().x;
+            float digital = controls.Gameplay.DiscreteRight.ReadValue<float>() -  controls.Gameplay.DiscreteLeft.ReadValue<float>();
+            hMove = Mathf.Abs(analog) > Mathf.Abs(digital) ? analog : digital;
             rb.velocity = new Vector2(hMove * velocity, rb.velocity.y);
         }
 
         // --- Jumping ---
-        if (Input.GetKey(KeyCode.Space) && isGrounded && canJump)
+        if (jumped && isGrounded && canJump)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isGrounded = false;
@@ -62,7 +108,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // --- Interaction ---
-        if (Input.GetKeyDown(KeyCode.E))
+        if (interacted)
         {
             Collider2D col = Physics2D.OverlapCircle(setLever.position, interactionRadius);
             Interactable interactable = col?.gameObject.GetComponent<Interactable>();
@@ -81,11 +127,14 @@ public class PlayerController : MonoBehaviour
             canWalk = false;
             rb.velocity = new Vector2(0f, rb.velocity.y);
             rb.AddForce(Vector2.up, ForceMode2D.Impulse);
-        } else if (canReturnWalk){
+        } else {
             canWalk = true;
         }
 
         animator.SetFloat("Speed", rb.velocity.x);
+
+        jumped = false;
+        interacted = false;
     }
 
     private IEnumerator ActivateInteractable(Interactable interactable)
@@ -121,11 +170,4 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsCollidingWithMagnet", false);
         }
     }
-    
-    // private void OnTriggerStay2D(Collider2D other) {
-    //     if (other.tag == "Magnet" && hasMagnet)
-    //     {
-    //         rb.AddForce(Vector2.up, ForceMode2D.Impulse);
-    //     }
-    // }
 }
